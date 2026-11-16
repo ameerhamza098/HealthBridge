@@ -1,0 +1,36 @@
+:root { --bg:#f5f7fa; --fg:#14213d; --muted:#5a6578; --card:#fff; --accent:#0b5cad; --danger:#b3261e; --line:#d5dbe3; font-family: system-ui, sans-serif; }
+* { box-sizing: border-box }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.5 }
+h1 { font-size:1.6rem; margin:.5rem 0 1rem } h2 { font-size:1.15rem; margin-top:0 }
+header { display:flex; flex-wrap:wrap; gap:1rem; align-items:center; padding:.75rem 1.25rem; background:var(--fg); color:#fff }
+header nav { display:flex; gap:.25rem; flex:1 }
+header a { color:#fff; padding:.35rem .75rem; border-radius:6px; text-decoration:none }
+header a.active, header a:hover { background:rgba(255,255,255,.2) }
+.banner { background:#fff3cd; color:#5c4400; padding:.35rem 1.25rem; font-size:.9rem }
+.page { max-width:1000px; margin:0 auto; padding:1rem 1.25rem 3rem }
+.card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:1rem 1.25rem; margin:1rem 0 }
+.narrow { max-width:440px; margin:3rem auto }
+.center { text-align:center; margin-top:4rem }
+.muted { color:var(--muted) } .sr, .skip:not(:focus) { position:absolute; left:-9999px }
+.skip:focus { position:static; display:block; background:#fff; padding:.5rem }
+label { display:block; margin:.6rem 0; font-weight:600; font-size:.9rem }
+input, select, textarea { display:block; width:100%; margin-top:.25rem; padding:.5rem; border:1px solid #8a94a6; border-radius:6px; font:inherit; background:#fff }
+.check { display:flex; gap:.5rem; align-items:center } .check input { width:auto; margin:0 }
+:focus-visible { outline:3px solid #ffb703; outline-offset:2px }
+button, .btn { background:var(--accent); color:#fff; border:0; border-radius:6px; padding:.55rem 1rem; font:inherit; cursor:pointer; text-decoration:none; display:inline-block }
+button:disabled { opacity:.6 } button.danger { background:var(--danger) }
+button.sm, .sm { padding:.25rem .6rem; font-size:.85rem } button.link { background:none; color:var(--accent); text-decoration:underline; padding:.25rem 0 }
+.row { display:flex; gap:1rem; flex-wrap:wrap } .row label { flex:1; min-width:180px }
+table { width:100%; border-collapse:collapse } th, td { text-align:left; padding:.5rem; border-bottom:1px solid var(--line); vertical-align:top }
+.actions { display:flex; gap:.35rem; flex-wrap:wrap }
+.slots { list-style:none; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:.5rem }
+.slots button { width:100%; background:#fff; color:var(--accent); border:1px solid var(--accent); text-align:left }
+.slots button:hover { background:#e8f1fb }
+.alert { padding:.6rem .9rem; border-radius:8px; margin:.75rem 0; border:1px solid } .alert ul { margin:.25rem 0 0 }
+.alert.error { background:#fdecea; border-color:var(--danger); color:#611a15 } .alert.ok { background:#e6f4ea; border-color:#2e7d32; color:#14391a }
+.alert.warn { background:#fff4e5; border-color:#b26a00; color:#4d2e00 }
+.warnrow { background:#fff4e5 }
+.badge { padding:.1rem .5rem; border-radius:99px; font-size:.8rem; background:#e3e8ef; border:1px solid #b9c2cf }
+.b-confirmed,.b-completed { background:#d9f0de } .b-requested { background:#fff0c2 } .b-cancelled,.b-rejected,.b-rescheduled { background:#f3dcdc }
+.history { font-size:.85rem; color:var(--muted); margin:.25rem 0 } .timeline > li { margin-bottom:.75rem }
+.note { border-left:4px solid var(--accent); padding-left:.75rem; margin:.75rem 0 }
