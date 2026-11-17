@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../auth'
 import { Icon } from '../icons'
 import { Alert, Button, errMsg, Field } from '../ui'
@@ -49,6 +50,7 @@ export default function Login() {
               {mode === 'login' ? 'New patient? Create an account' : 'Have an account? Sign in'}
             </button>
           </p>
+          <p className="small muted" style={{ textAlign: 'center' }}>Are you a doctor? <Link to="/join-doctor">Join as a doctor</Link></p>
           <details className="demo">
             <summary>Demo accounts (password: Password123!)</summary>
             <ul style={{ margin: '.5rem 0 0', paddingLeft: '1.1rem' }}>

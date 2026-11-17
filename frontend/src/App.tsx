@@ -13,6 +13,8 @@ import { Queue, Schedule } from './pages/Staff'
 import { Consents, Timeline } from './pages/Records'
 import { AuditLog, Users } from './pages/Admin'
 import Faq from './pages/Faq'
+import JoinDoctor from './pages/JoinDoctor'
+import DoctorApplications from './pages/DoctorApplications'
 
 interface NavItem { to: string; label: string; icon: string }
 const STAFF: NavItem[] = [
@@ -32,11 +34,11 @@ const NAV: Record<Role, NavItem[]> = {
   ],
   receptionist: STAFF,
   clinician: STAFF,
-  administrator: [...STAFF, { to: '/audit', label: 'Audit trail', icon: 'audit' }, { to: '/users', label: 'Users', icon: 'user' }],
+  administrator: [...STAFF, { to: '/audit', label: 'Audit trail', icon: 'audit' }, { to: '/applications', label: 'Doctor applications', icon: 'stethoscope' }, { to: '/users', label: 'Users', icon: 'user' }],
 }
 const TITLES: [string, string][] = [
   ['/dashboard', 'Dashboard'], ['/appointments', 'Appointments'], ['/patients', 'Patients'], ['/timeline', 'My records'], ['/privacy', 'Privacy & consent'],
-  ['/help', 'Help'], ['/queue', 'Daily queue'], ['/schedule', 'Schedule'], ['/audit', 'Audit trail'], ['/users', 'Users'],
+  ['/help', 'Help'], ['/queue', 'Daily queue'], ['/schedule', 'Schedule'], ['/audit', 'Audit trail'], ['/applications', 'Doctor applications'], ['/users', 'Users'],
 ]
 const STAFF_ROLES: Role[] = ['receptionist', 'clinician', 'administrator']
 
@@ -120,7 +122,7 @@ function Shell() {
   const loc = useLocation()
   useEffect(() => setMenu(false), [loc.pathname])
   if (loading) return <div className="center" role="status"><span className="spinner" /> <span className="muted">Loading…</span></div>
-  if (!user) return <Login />
+  if (!user) return <Routes><Route path="/join-doctor" element={<JoinDoctor />} /><Route path="*" element={<Login />} /></Routes>
   const title = TITLES.find(([p]) => loc.pathname.startsWith(p))?.[1] ?? (loc.pathname.startsWith('/patients/') ? 'Patient profile' : '')
   return (
     <div className="shell">
@@ -156,6 +158,7 @@ function Shell() {
             <Route path="/queue" element={<Guard roles={STAFF_ROLES}><Queue /></Guard>} />
             <Route path="/schedule" element={<Guard roles={STAFF_ROLES}><Schedule /></Guard>} />
             <Route path="/audit" element={<Guard roles={['administrator']}><AuditLog /></Guard>} />
+            <Route path="/applications" element={<Guard roles={['administrator']}><DoctorApplications /></Guard>} />
             <Route path="/users" element={<Guard roles={['administrator']}><Users /></Guard>} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

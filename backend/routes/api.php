@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AdminController;
 use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\DoctorApplicationController;
 use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\RecordsController;
 use App\Http\Controllers\Api\StaffController;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/auth/register', [AuthController::class, 'register'])->middleware('throttle:10,1');
 Route::post('/auth/login', [AuthController::class, 'login'])->middleware('throttle:10,1');
+Route::post('/doctor-applications', [DoctorApplicationController::class, 'submit'])->middleware('throttle:5,1');
 Route::post('/faq', [FaqController::class, 'ask'])->middleware('throttle:20,1');
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -58,6 +60,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/audit-logs', [AdminController::class, 'auditLogs']);
         Route::get('/users', [AdminController::class, 'users']);
         Route::post('/users', [AdminController::class, 'createStaff']);
+        Route::get('/doctor-applications', [DoctorApplicationController::class, 'index']);
+        Route::post('/doctor-applications/{application}/approve', [DoctorApplicationController::class, 'approve']);
+        Route::post('/doctor-applications/{application}/reject', [DoctorApplicationController::class, 'reject']);
         Route::patch('/users/{user}/active', [AdminController::class, 'setActive']);
     });
 });
